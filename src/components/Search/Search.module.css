@@ -1,0 +1,13 @@
+.inputList{
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-template-rows: repeat(2, 2fr);
+  grid-column-gap: 100px;
+  grid-row-gap: 30px;
+}
+.input{
+  height: 25px;
+}
+.wrapper{
+  padding: 40px 20px;
+}

@@ -1,0 +1,15 @@
+.selected{
+  border: 2px solid blue;
+}
+.list{
+  display: flex;
+  flex-direction: row;
+}
+.button{
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  text-align: center;
+}
+.previous{}
+.next{}

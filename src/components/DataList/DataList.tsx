@@ -1,0 +1,99 @@
+import React, { FC } from 'react';
+import classes from './DataList.module.css'
+
+const DataList: FC = () => {
+  return (
+    <div className={classes.columnDataList}>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+      <p>k</p>
+    </div>
+  );
+};
+
+export default DataList;
