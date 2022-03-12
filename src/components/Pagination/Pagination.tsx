@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import classes from './Pagination.module.css';
+import globalClasses from '../../style/global.module.css'
 
 interface PaginationProps {
   currentPage: number;
@@ -12,23 +13,28 @@ const Pagination: FC<PaginationProps> = ({ currentPage, totalCount, setCurrentPa
     pageBtnsList.push(i);
   }
   return (
-    <>
-      <div onClick={() => setCurrentPage(currentPage - 1)}>Previous</div>
+    <div className={[classes.container, globalClasses.container].join(' ')}>
       <div className={classes.list}>
+        <button className={[classes.button, classes.buttonBig].join(' ')} onClick={() => setCurrentPage(currentPage - 1)}><p>Previous</p></button>
         {pageBtnsList.map((i) => {
           let cn: Array<string> = [classes.button];
           if (currentPage == i) {
             cn.push(classes.selected);
           }
           return (
-            <div className={`${classes.button} ${currentPage == i ? classes.selected : ''}`} key={i} onClick={() => setCurrentPage(i)}>
-              {i}
-            </div>
+            <button
+              className={`${classes.button} ${currentPage == i ? classes.selected : ''}`}
+              key={i}
+              onClick={() => setCurrentPage(i)}>
+              <p>{i}</p>
+            </button>
           );
         })}
+        <button className={[classes.button, classes.buttonBig].join(' ')} onClick={() => setCurrentPage(currentPage + 1)}>
+          <p>Next</p>
+        </button>
       </div>
-      <div onClick={() => setCurrentPage(currentPage + 1)}>Next</div>
-    </>
+    </div>
   );
 };
 

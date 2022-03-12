@@ -17,7 +17,7 @@ function App() {
           <Detail />
         </div>
       </section>
-      <Pagination currentPage={currentPage} totalCount={5} setCurrentPage={setCurrentPage} />
+      <Pagination currentPage={currentPage} totalCount={20} setCurrentPage={setCurrentPage} />
     </>
   );
 }

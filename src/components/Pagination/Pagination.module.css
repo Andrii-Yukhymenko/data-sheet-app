@@ -1,15 +1,33 @@
-.selected{
-  border: 2px solid blue;
+.container{
+  padding: 30px 0 30px 0;
+  display: flex;
+  justify-content: center;
 }
-.list{
+.list {
   display: flex;
   flex-direction: row;
 }
-.button{
+.button {
   width: 40px;
   height: 40px;
-  border-radius: 2px;
-  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  color: #fff;
+  border: 2px solid blue;
 }
-.previous{}
-.next{}
+.button + .button {
+  margin: 0 1px;
+}
+.buttonBig {
+  width: 80px;
+}
+.selected {
+  border: 2px solid green;
+}
+.previous {
+}
+.next {
+}
