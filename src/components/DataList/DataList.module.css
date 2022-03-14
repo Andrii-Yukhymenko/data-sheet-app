@@ -1,3 +1,10 @@
-.columnDataList{
+.columnDataList {
   width: 70%;
+}
+.tableColumn {
+  /*padding: 0 5px;*/
+}
+.tableRow {
+  padding: 7px;
+  border: 2px solid #000;
 }
