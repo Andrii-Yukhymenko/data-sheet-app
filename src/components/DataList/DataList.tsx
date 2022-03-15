@@ -1,38 +1,34 @@
 import React, { FC } from 'react';
 import classes from './DataList.module.css';
 import { dataItem } from '../../types';
+import DataListItem from '../DataListItem/DataListItem';
 
 interface DataListProps {
   croppedSheet: Array<dataItem>;
-  isLoad: boolean;
+  setDetail: Function;
 }
-const DataList: FC<DataListProps> = ({ croppedSheet, isLoad }) => {
+const DataList: FC<DataListProps> = ({ croppedSheet, setDetail }) => {
   return (
-    <div className={classes.columnDataList}>
-      <table>
-        <tr>
-          <td onClick={() => console.log('Id')}>Id</td>
-          <td>First name</td>
-          <td>Last name</td>
-          <td>Email</td>
-          <td>Phone</td>
-        </tr>
-        {croppedSheet.map((i) => {
-          return (
-            <>
-              <tr className={classes.tableColumn}>
-                <td className={classes.tableRow}>{i.id}</td>
-                <td className={classes.tableRow}>{i.firstName}</td>
-                <td className={classes.tableRow}>{i.lastName}</td>
-                <td className={classes.tableRow}>{i.email}</td>
-                <td className={classes.tableRow}>{i.phone}</td>
-                <button>Detail</button>
-              </tr>
-            </>
-          );
-        })}
-      </table>
-    </div>
+    <>
+      <div className={classes.columnDataList}>
+        <table className={classes.table}>
+          <thead>
+            <tr className={classes.tableColumn}>
+              <td className={classes.tableRow} onClick={() => console.log('Id')}>Id</td>
+              <td className={classes.tableRow}> First name</td>
+              <td className={classes.tableRow}> Last name</td>
+              <td className={classes.tableRow}> Email</td>
+              <td className={classes.tableRow}> Phone</td>
+            </tr>
+          </thead>
+          <tbody>
+            {croppedSheet.map((i) => (
+              <DataListItem key={i.id} dataItem={i} setDetail={setDetail} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 

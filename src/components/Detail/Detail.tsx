@@ -1,23 +1,34 @@
 import React, { FC } from 'react';
-import classes from '../App/App.module.css';
+import classes from './Detail.module.css';
+import { dataItem } from '../../types';
 
+interface DetailProps {
+  detail: dataItem;
+}
 
-const Detail: FC = () => {
+const Detail: FC<DetailProps> = ({ detail }) => {
   return (
-    <div className={classes.columnDetail}>
-      <div style={{ position: 'sticky', top: '0', right: '0' }}>
-        <p>Choose data row</p>
-        <p>id: 12</p>
-        <p>Firstname: Andrii</p>
-        <p>Lastname: Yukhymenko</p>
-        <p>Email: email@email.com</p>
-        <p>Phone: +1234567890</p>
-        <p>Street address: 3422 Non Rd</p>
-        <p>City: Forney</p>
-        <p>State: PA</p>
-        <p>Zip: 30400</p>
+    <>
+      <div className={classes.columnDetail}>
+        <div style={{ position: 'sticky', top: '0', right: '0' }}>
+          {Object.keys(detail).length ? (
+            <>
+              <p>Id: {detail?.id}</p>
+              <p>Firstname: {detail?.firstName}</p>
+              <p>Lastname: {detail?.lastName}</p>
+              <p>Email: {detail?.email}</p>
+              <p>Phone: {detail?.phone}</p>
+              <p>Street address: {detail?.address.streetAddress}</p>
+              <p>City: {detail?.address.city}</p>
+              <p>State: {detail?.address.state}</p>
+              <p>Zip: {detail?.address.zip}</p>
+            </>
+          ) : (
+            <p>Choose data row</p>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

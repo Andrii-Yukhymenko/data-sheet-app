@@ -1,9 +1,6 @@
 .columnDataList {
   width: 70%;
 }
-.table{
-  width: 100%;
-}
 .tableColumn {
   /*padding: 0 5px;*/
 }
@@ -11,4 +8,3 @@
   padding: 7px;
   border: 2px solid #000;
 }
-

@@ -11,14 +11,17 @@ import { useFetching } from '../../hooks/useFetching';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [fullSheet, setFullSheet] = useState<dataItem[]>([]);
-  const onePageLimit: number = 50;
+  const [fullSheet, setFullSheet] = useState<Array<dataItem>>([]);
   const [croppedSheet, setCroppedSheet] = useState<Array<dataItem>>([]);
+  const [detail, setDetail] = useState<any>({});
+  const onePageLimit: number = 50;
   const [fetchData, isLoad, error] = useFetching(() => {
     API.getFullSheet().then((response) => setFullSheet(response.data));
   });
+  const [load, setLoad] = useState<boolean>(false);
+
   useEffect(() => {
-    fetchData();
+    API.getFullSheet().then((response) => setFullSheet(response.data)).finally(() => setLoad(true))
   }, []);
   useEffect(() => {
     setCroppedSheet(
@@ -32,8 +35,14 @@ function App() {
       <Search />
       <section>
         <div className={`${classes.columns} ${globalClasses.container}`}>
-          <DataList croppedSheet={croppedSheet} isLoad={isLoad}/>
-          <Detail />
+          {load ? (
+            <>
+              <DataList croppedSheet={croppedSheet} setDetail={setDetail} />
+              <Detail detail={detail} />
+            </>
+          ) : (
+            <p>Loading</p>
+          )}
         </div>
       </section>
       <Pagination currentPage={currentPage} totalCount={20} setCurrentPage={setCurrentPage} />

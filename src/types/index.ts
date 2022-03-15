@@ -14,4 +14,4 @@ export interface dataItem {
   address: address;
 }
 
-export type useFetchingReturn = string | boolean | Function;
+export type useFetchingReturn = [Function, boolean, string];

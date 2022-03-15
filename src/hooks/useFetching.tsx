@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {useFetchingReturn} from "../types";
 
-export const useFetching: Function = (callback: Function) => {
+export const useFetching: (callback: Function) => useFetchingReturn = (callback) => {
   const [isLoad, setIsLoad] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
