@@ -5,7 +5,7 @@ export interface address {
   zip: string;
 }
 export interface dataItem {
-  id: number;
+  id: number | string;
   firstName: string;
   lastName: string;
   email: string;
@@ -14,7 +14,7 @@ export interface dataItem {
   address: address;
 }
 
-export interface filterParams {
+export interface filterParamsTypes {
   id: string;
   firstName: string;
   lastName: string;

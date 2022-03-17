@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import classes from './Search.module.css';
 import globalClasses from '../../style/global.module.css';
-import { filterParams } from '../../types';
+import { filterParamsTypes } from '../../types';
 
 interface searchProps {
   setFilterParams: Function;
