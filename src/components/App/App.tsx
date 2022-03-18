@@ -37,16 +37,152 @@ function App() {
   // Sort State
   const [sortParams, setSortParams] = useState<sortParams>({ type: '', orientation: '' });
 
-  const sorter: (type: any) => void = (type) => {
+  const sorter: (params: any) => void = (params) => {
     // todo: ошибка с типом у type
-    // if (type === 'id') {
-    //   setSortedSheet(sortedSheet.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0)));
-    // }
-    // Возвращает undefined
-    // if (type === undefined) {
-    setSortedSheet(fullSheet);
-    // }
+    console.log(params);
+    // Без сортировки
+    if (params.type === '') {
+      setSortedSheet(fullSheet);
+    }
+
+    // Сортировка по id
+    if (params.type === 'id') {
+      if (params.orientation === 'up') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            return Number(obj1.id) - Number(obj2.id);
+          }),
+        );
+      }
+      if (params.orientation === 'down') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            return Number(obj2.id) - Number(obj1.id);
+          }),
+        );
+      }
+    }
+
+    // Сортировка по имени
+    if (params.type === 'firstName') {
+      if (params.orientation === 'up') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            let name1 = obj1.firstName.toLowerCase();
+            let name2 = obj2.firstName.toLowerCase();
+            if (name1 < name2) {
+              return -1;
+            }
+            if (name1 > name2) {
+              return 1;
+            }
+            return 0;
+          }),
+        );
+      }
+      if (params.orientation === 'down') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            let name1 = obj1.firstName.toLowerCase();
+            let name2 = obj2.firstName.toLowerCase();
+            if (name1 > name2) {
+              return -1;
+            }
+            if (name1 < name2) {
+              return 1;
+            }
+            return 0;
+          }),
+        );
+      }
+    }
+
+    // Сортировка по фамилии
+    if (params.type === 'lastName') {
+      if (params.orientation === 'up') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            let name1 = obj1.lastName.toLowerCase();
+            let name2 = obj2.lastName.toLowerCase();
+            if (name1 < name2) {
+              return -1;
+            }
+            if (name1 > name2) {
+              return 1;
+            }
+            return 0;
+          }),
+        );
+      }
+      if (params.orientation === 'down') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            let name1 = obj1.lastName.toLowerCase();
+            let name2 = obj2.lastName.toLowerCase();
+            if (name1 > name2) {
+              return -1;
+            }
+            if (name1 < name2) {
+              return 1;
+            }
+            return 0;
+          }),
+        );
+      }
+    }
+
+    // Сортировка по почте
+    if (params.type === 'email') {
+      if (params.orientation === 'up') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            let name1 = obj1.email.toLowerCase();
+            let name2 = obj2.email.toLowerCase();
+            if (name1 < name2) {
+              return -1;
+            }
+            if (name1 > name2) {
+              return 1;
+            }
+            return 0;
+          }),
+        );
+      }
+      if (params.orientation === 'down') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            let name1 = obj1.email.toLowerCase();
+            let name2 = obj2.email.toLowerCase();
+            if (name1 > name2) {
+              return -1;
+            }
+            if (name1 < name2) {
+              return 1;
+            }
+            return 0;
+          }),
+        );
+      }
+    }
+
+    if (params.type === 'phone') {
+      if (params.orientation === 'up') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            return Number(obj1.phone) - Number(obj2.phone);
+          }),
+        );
+      }
+      if (params.orientation === 'down') {
+        setSortedSheet(
+          fullSheet.sort((obj1, obj2) => {
+            return Number(obj2.phone) - Number(obj1.phone);
+          }),
+        );
+      }
+    }
   };
+
 
   // Filter
   const filterer: (params: any) => void = (params) => {
