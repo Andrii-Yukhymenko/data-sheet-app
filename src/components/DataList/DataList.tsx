@@ -52,7 +52,7 @@ const DataList: FC<DataListProps> = ({ croppedSheet, setDetail, setSortParams })
                 )}
               </td>
               <td className={classes.tableRow} onClick={() => setParams('lastName')}>
-                First Name
+                Last Name
                 {orientation !== '' && type === 'lastName' && (
                   <img
                     className={classes.sortIcon}

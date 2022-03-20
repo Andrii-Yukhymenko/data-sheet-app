@@ -39,7 +39,7 @@ function App() {
 
   const sorter: (params: any) => void = (params) => {
     // todo: ошибка с типом у type
-    console.log(params);
+
     // Без сортировки
     if (params.type === '') {
       setSortedSheet(fullSheet);
@@ -165,6 +165,7 @@ function App() {
       }
     }
 
+    // Сортировка по телефону
     if (params.type === 'phone') {
       if (params.orientation === 'up') {
         setSortedSheet(
@@ -183,18 +184,23 @@ function App() {
     }
   };
 
-
   // Filter
-  const filterer: (params: any) => void = (params) => {
+  const filterer: (params: any) => void = async (params) => {
     // todo: ошибка с типом у params
-    let tempSheet = [...sortedSheet];
-    Object.entries(params).forEach(([filterParameter, val]) => {
-      console.log(typeof val);
-      tempSheet = tempSheet.filter((sheetRow) => {
+    let tempSheet: Array<dataItem> = [...sortedSheet];
+    await Object.entries(params).forEach(([pp, vv]) => {
+      tempSheet = tempSheet.filter(async (sheetRow: any) => {
         // todo: решить вопрос с типами, как их использовать и вызывать в sheetRow
-        if (sheetRow['email'].includes('')) {
-          return sheetRow;
+        // await console.log(sheetRow[pp]);
+        let c = sheetRow[pp];
+        // !Сначала с это номер, поетому includes не работает, а уже птом это строка
+        // !Проблема из за того что с сервера id приходит как число
+        await console.log(typeof c);
+        await console.log(vv);
+        if (c.includes(vv)) {
+          await console.log('совпадение')
         }
+        return c.includes(vv);
       });
     });
 
@@ -232,6 +238,7 @@ function App() {
   // Сортировка и фильтрация
   useEffect(() => {
     mutateSheet();
+
   }, [filterParams, sortParams, fullSheet]);
 
   // Render
