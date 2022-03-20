@@ -15,7 +15,11 @@ function App() {
   const [croppedSheet, setCroppedSheet] = useState<Array<dataItem>>([]);
   // todo: исправить тип данных в detail на собственный
   const [detail, setDetail] = useState<any>({});
+
+  // Пагинация
   const onePageLimit: number = 50;
+  const [paginationPagesCount, setPaginationPagesCount] = useState<number>(0);
+
   // const [fetchData, isLoad, error] = useFetching(() => {
   //   API.getFullSheet().then((response) => setFullSheet(response.data));
   // });
@@ -195,10 +199,10 @@ function App() {
         let c = sheetRow[pp];
         // !Сначала с это номер, поетому includes не работает, а уже птом это строка
         // !Проблема из за того что с сервера id приходит как число
-        await console.log(typeof c);
-        await console.log(vv);
+        // await console.log(typeof c);
+        // await console.log(vv);
         if (c.includes(vv)) {
-          await console.log('совпадение')
+          // await console.log('совпадение')
         }
         return c.includes(vv);
       });
@@ -238,8 +242,15 @@ function App() {
   // Сортировка и фильтрация
   useEffect(() => {
     mutateSheet();
-
+    // console.log(filteredSheet.length);
+    // console.log(paginationPagesCount);
   }, [filterParams, sortParams, fullSheet]);
+
+  // Если просчитать количество страниц псле фильтрации, то состояние не успевает обновляться из за асинхронности(я это так понимаю)
+  // Поэтому этот юзэфект вынужден
+  useEffect(() => {
+    setPaginationPagesCount(Math.ceil(filteredSheet.length / onePageLimit));
+  }, [filteredSheet]);
 
   // Render
   return (
@@ -261,7 +272,11 @@ function App() {
           )}
         </div>
       </section>
-      <Pagination currentPage={currentPage} totalCount={20} setCurrentPage={setCurrentPage} />
+      <Pagination
+        currentPage={currentPage}
+        paginationPagesCount={paginationPagesCount}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 }
