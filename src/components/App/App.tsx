@@ -40,7 +40,6 @@ function App() {
 
   // Sort State
   const [sortParams, setSortParams] = useState<sortParams>({ type: '', orientation: '' });
-
   const sorter: (params: any) => void = (params) => {
     // todo: ошибка с типом у type
 
@@ -189,33 +188,32 @@ function App() {
   };
 
   // Filter
-  const filterer: (params: any) => void = async (params) => {
+  const filterer: (params: filterParamsTypes) => any = async (params) => {
     // todo: ошибка с типом у params
     let tempSheet: Array<dataItem> = [...sortedSheet];
-    await Object.entries(params).forEach(([pp, vv]) => {
+    await Object.entries(params).forEach(([paramsType, paramsValue]) => {
+      // ! Такое ощущение, что forEach подбирает массив tempSheet только один раз и больше не выплевывает его наружу
       tempSheet = tempSheet.filter(async (sheetRow: any) => {
         // todo: решить вопрос с типами, как их использовать и вызывать в sheetRow
-        // await console.log(sheetRow[pp]);
-        let c = sheetRow[pp];
-        // !Сначала с это номер, поетому includes не работает, а уже птом это строка
-        // !Проблема из за того что с сервера id приходит как число
-        // await console.log(typeof c);
-        // await console.log(vv);
-        if (c.includes(vv)) {
-          // await console.log('совпадение')
+        let c = sheetRow[paramsType];
+        // Проблема из-за того что с сервера id приходит как число
+        // ! Id теперь это строка
+        console.log(`Итерация внутри filter: строка - ${c}, содержит - ${paramsValue}`);
+        if (c?.includes(paramsValue)) {
+          console.log('совпадение');
+          return true;
         }
-        return c.includes(vv);
+        // return c.includes(vv);
       });
+      console.log('forEach is end');
     });
 
-    // Возвращает объект параметров, где каждый - пустая строка
     setFilteredSheet(tempSheet);
+    console.log('set is end');
   };
+
   // При изменении fullSheet присваиваем состоянию sortedSheet значение fullSheet
   // При изменении sortedSheet присваиваем состоянию filteredSheet значение sortedSheet
-  // В таблице отрисосвываем filteredSheet
-  // Обрезать теперь нужно filteredSheet а не fullSheet
-
   const mutateSheet: () => void = () => {
     let mutatedSheet = [...fullSheet];
     sorter(sortParams);
@@ -228,7 +226,6 @@ function App() {
   useEffect(() => {
     API.getFullSheet()
       .then((response) => setFullSheet(response.data))
-      .then(() => setSortedSheet(fullSheet))
       .finally(() => setLoad(true));
   }, []);
 
@@ -241,9 +238,8 @@ function App() {
 
   // Сортировка и фильтрация
   useEffect(() => {
+    console.clear();
     mutateSheet();
-    // console.log(filteredSheet.length);
-    // console.log(paginationPagesCount);
   }, [filterParams, sortParams, fullSheet]);
 
   // Если просчитать количество страниц псле фильтрации, то состояние не успевает обновляться из за асинхронности(я это так понимаю)
