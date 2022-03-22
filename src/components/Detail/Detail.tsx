@@ -22,6 +22,7 @@ const Detail: FC<DetailProps> = ({ detail }) => {
               <p>City: {detail?.address.city}</p>
               <p>State: {detail?.address.state}</p>
               <p>Zip: {detail?.address.zip}</p>
+              <p>Description: {detail?.description}</p>
             </>
           ) : (
             <p>Choose data row</p>

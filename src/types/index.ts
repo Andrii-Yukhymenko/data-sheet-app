@@ -5,7 +5,7 @@ export interface address {
   zip: string;
 }
 export interface dataItem {
-  id: number | string;
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -26,7 +26,3 @@ export interface sortParams {
   type: string;
   orientation: string;
 }
-
-export type useFetchingReturn = [Function, boolean, string];
-
-export type sorterParameters = string | undefined;

@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import {useFetchingReturn} from "../types";
 
-export const useFetching: (callback: Function) => useFetchingReturn = (callback) => {
+export const useFetching = (callback: Function): [Function, boolean, string] => {
   const [isLoad, setIsLoad] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
@@ -18,7 +17,7 @@ export const useFetching: (callback: Function) => useFetchingReturn = (callback)
   return [fetching, isLoad, error];
 };
 
-// Принимает коллбек функцию которая должна(выполнитца).
-// Возвращает: первое значение - ту же функцию, но уже обработаную;
-//             второе значение - булевое значение закончилась ли загрузка
-//             третее значение - ошибка, если она есть.
+// Принимает коллбек функцию которая должна(выполнится).
+// Возвращает: первое значение - ту же функцию, но уже обработанную;
+//             второе значение - булиновое значение закончилась ли загрузка
+//             третье значение - ошибка, если она есть.

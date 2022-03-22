@@ -30,62 +30,66 @@ const DataList: FC<DataListProps> = ({ croppedSheet, setDetail, setSortParams })
   return (
     <>
       <div className={classes.columnDataList}>
-        <table className={classes.table}>
-          <thead>
-            <tr className={classes.tableColumn}>
-              <td className={classes.tableRow} onClick={() => setParams('id')}>
-                Id
-                {orientation !== '' && type === 'id' && (
-                  <img
-                    className={classes.sortIcon}
-                    src={orientation === 'up' ? TriangleUp : TriangleDown}
-                  />
-                )}
-              </td>
-              <td className={classes.tableRow} onClick={() => setParams('firstName')}>
-                First Name
-                {orientation !== '' && type === 'firstName' && (
-                  <img
-                    className={classes.sortIcon}
-                    src={orientation === 'up' ? TriangleUp : TriangleDown}
-                  />
-                )}
-              </td>
-              <td className={classes.tableRow} onClick={() => setParams('lastName')}>
-                Last Name
-                {orientation !== '' && type === 'lastName' && (
-                  <img
-                    className={classes.sortIcon}
-                    src={orientation === 'up' ? TriangleUp : TriangleDown}
-                  />
-                )}
-              </td>
-              <td className={classes.tableRow} onClick={() => setParams('email')}>
-                Email
-                {orientation !== '' && type === 'email' && (
-                  <img
-                    className={classes.sortIcon}
-                    src={orientation === 'up' ? TriangleUp : TriangleDown}
-                  />
-                )}
-              </td>
-              <td className={classes.tableRow} onClick={() => setParams('phone')}>
-                Phone
-                {orientation !== '' && type === 'phone' && (
-                  <img
-                    className={classes.sortIcon}
-                    src={orientation === 'up' ? TriangleUp : TriangleDown}
-                  />
-                )}
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            {croppedSheet.map((i) => (
-              <DataListItem key={i.id} dataItem={i} setDetail={setDetail} />
-            ))}
-          </tbody>
-        </table>
+        {croppedSheet.length > 0 ? (
+          <table className={classes.table}>
+            <thead>
+              <tr className={classes.tableColumn}>
+                <td className={classes.tableRow} onClick={() => setParams('id')}>
+                  Id
+                  {orientation !== '' && type === 'id' && (
+                    <img
+                      className={classes.sortIcon}
+                      src={orientation === 'up' ? TriangleUp : TriangleDown}
+                    />
+                  )}
+                </td>
+                <td className={classes.tableRow} onClick={() => setParams('firstName')}>
+                  First Name
+                  {orientation !== '' && type === 'firstName' && (
+                    <img
+                      className={classes.sortIcon}
+                      src={orientation === 'up' ? TriangleUp : TriangleDown}
+                    />
+                  )}
+                </td>
+                <td className={classes.tableRow} onClick={() => setParams('lastName')}>
+                  Last Name
+                  {orientation !== '' && type === 'lastName' && (
+                    <img
+                      className={classes.sortIcon}
+                      src={orientation === 'up' ? TriangleUp : TriangleDown}
+                    />
+                  )}
+                </td>
+                <td className={classes.tableRow} onClick={() => setParams('email')}>
+                  Email
+                  {orientation !== '' && type === 'email' && (
+                    <img
+                      className={classes.sortIcon}
+                      src={orientation === 'up' ? TriangleUp : TriangleDown}
+                    />
+                  )}
+                </td>
+                <td className={classes.tableRow} onClick={() => setParams('phone')}>
+                  Phone
+                  {orientation !== '' && type === 'phone' && (
+                    <img
+                      className={classes.sortIcon}
+                      src={orientation === 'up' ? TriangleUp : TriangleDown}
+                    />
+                  )}
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              {croppedSheet.map((i) => (
+                <DataListItem key={i.id} dataItem={i} setDetail={setDetail} />
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No matches</p>
+        )}
       </div>
     </>
   );
