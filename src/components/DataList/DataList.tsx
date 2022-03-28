@@ -15,7 +15,7 @@ const DataList: FC<DataListProps> = ({ croppedSheet, setDetail, setSortParams })
   const [orientation, setOrientation] = useState<string>('');
 
   // При первом нажатии ориентация обнуляется
-  const setParams: (t: string) => void = (t) => {
+  const setParams = (t: string) => {
     // Если вы выбираете новую колонку для сортировки то по умолчанию выбирается сортировка по возростанию
     t !== type ? setOrientation('up') : setOrientation(orientation === 'up' ? 'down' : 'up');
     setType(t);

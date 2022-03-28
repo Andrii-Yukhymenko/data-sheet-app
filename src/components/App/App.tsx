@@ -15,6 +15,7 @@ function App() {
   const [croppedSheet, setCroppedSheet] = useState<Array<dataItem>>([]);
   const [detail, setDetail] = useState<any>({});
   const [load, setLoad] = useState<boolean>(false);
+  const [loadingError, setLoadingError] = useState<string>('');
 
   // Пагинация
   const onePageLimit: number = 50;
@@ -29,19 +30,6 @@ function App() {
     phone: '',
   });
   const [filteredSheet, setFilteredSheet] = useState<Array<dataItem>>([]);
-  const filterer = useCallback(() => {
-    const { id, firstName, lastName, email, phone } = filterParams;
-    setFilteredSheet(
-      sortedSheet.filter(
-        (itemFilter: dataItem) =>
-          String(itemFilter.id).toLowerCase().includes(id.toLowerCase()) &&
-          itemFilter.firstName.toLowerCase().includes(firstName.toLowerCase()) &&
-          itemFilter.lastName.toLowerCase().includes(lastName.toLowerCase()) &&
-          itemFilter.email.toLowerCase().includes(email.toLowerCase()) &&
-          itemFilter.phone.toLowerCase().includes(phone.toLowerCase()),
-      ),
-    );
-  }, [sortedSheet, filterParams]);
 
   // Sort State
   const [sortParams, setSortParams] = useState<sortParams>({ type: '', orientation: '' });
@@ -122,9 +110,22 @@ function App() {
       );
     }
   };
+  const filterer = useCallback(() => {
+    const { id, firstName, lastName, email, phone } = filterParams;
+    setFilteredSheet(
+      sortedSheet.filter(
+        (itemFilter: dataItem) =>
+          String(itemFilter.id).toLowerCase().includes(id.toLowerCase()) &&
+          itemFilter.firstName.toLowerCase().includes(firstName.toLowerCase()) &&
+          itemFilter.lastName.toLowerCase().includes(lastName.toLowerCase()) &&
+          itemFilter.email.toLowerCase().includes(email.toLowerCase()) &&
+          itemFilter.phone.toLowerCase().includes(phone.toLowerCase()),
+      ),
+    );
+  }, [sortedSheet, filterParams]);
 
   // Сортировка + фильтрация
-  const mutateSheet: () => void = () => {
+  const mutateSheet: Function = () => {
     sorter(sortParams);
     filterer();
   };
@@ -132,21 +133,32 @@ function App() {
   // Effects
   // Получение данных из сервера при первой отрисовке
   useEffect(() => {
-    API.getFullSheet()
-      .then((response) => setFullSheet(response.data))
-      .finally(() => setLoad(true));
+    try {
+      API.getFullSheet().then((response) => {
+        if (response.status === 200) {
+          setFullSheet(response.data);
+        } else {
+          setLoadingError('Error sending request to server.');
+        }
+      });
+    } catch (e) {
+      console.log(e);
+      setLoadingError('Error sending request to server.');
+    } finally {
+      setLoad(true);
+    }
   }, []);
 
   // Обрезание таблицы для вывода постранично
   useEffect(() => {
     setCroppedSheet(
-      filteredSheet?.slice(currentPage * onePageLimit - onePageLimit, currentPage * onePageLimit),
+      filteredSheet.slice(currentPage * onePageLimit - onePageLimit, currentPage * onePageLimit),
     );
+    console.log(croppedSheet);
   }, [filteredSheet, currentPage]);
 
   // Сортировка и фильтрация
   useEffect(() => {
-    console.clear();
     mutateSheet();
   }, [filterParams, sortParams, fullSheet]);
 
@@ -163,14 +175,18 @@ function App() {
       <section>
         <div className={`${classes.columns} ${globalClasses.container}`}>
           {load ? (
-            <>
-              <DataList
-                croppedSheet={croppedSheet}
-                setDetail={setDetail}
-                setSortParams={setSortParams}
-              />
-              <Detail detail={detail} />
-            </>
+            !loadingError ? (
+              <>
+                <DataList
+                  croppedSheet={croppedSheet}
+                  setDetail={setDetail}
+                  setSortParams={setSortParams}
+                />
+                <Detail detail={detail} />
+              </>
+            ) : (
+              <p>{loadingError}</p>
+            )
           ) : (
             <p>Loading</p>
           )}
