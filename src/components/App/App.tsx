@@ -7,7 +7,7 @@ import DataList from '../DataList/DataList';
 import Pagination from '../Pagination/Pagination';
 import API from '../../API';
 import { dataItem, filterParamsTypes, sortParams } from '../../types';
-import Loader from "../Loader/Loader";
+import Loader from '../Loader/Loader';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -188,15 +188,15 @@ function App() {
               <Detail detail={detail} />
             </>
           ) : (
-            <Loader/>
+            <Loader />
           )}
         </div>
       </section>
-      {/*<Pagination*/}
-      {/*  currentPage={currentPage}*/}
-      {/*  paginationPagesCount={paginationPagesCount}*/}
-      {/*  setCurrentPage={setCurrentPage}*/}
-      {/*/>*/}
+      <Pagination
+        currentPage={currentPage}
+        paginationPagesCount={paginationPagesCount}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 }
