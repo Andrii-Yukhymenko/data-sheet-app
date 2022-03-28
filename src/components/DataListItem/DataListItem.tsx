@@ -15,7 +15,7 @@ const DataListItem: FC<DataListItemProps> = ({ dataItem, setDetail }) => {
       <td className={classes.tableRow}>{dataItem.lastName}</td>
       <td className={classes.tableRow}>{dataItem.email}</td>
       <td className={classes.tableRow}>{dataItem.phone}</td>
-      <td><button onClick={() => setDetail(dataItem)}>Detail</button></td>
+      <td><button className={classes.button} onClick={() => setDetail(dataItem)}>Detail</button></td>
     </tr>
   );
 };

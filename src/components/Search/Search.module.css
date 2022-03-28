@@ -7,7 +7,34 @@
 }
 .input{
   height: 25px;
+  width: 100%;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 17px;
 }
 .wrapper{
   padding: 40px 20px;
 }
+.button{
+  background: #07B0F2;
+  border-radius: 3px;
+  width: 40%;
+  font-size: 16px;
+}
+.title{
+  font-size: 17px;
+  margin: 0 0 7px 0;
+}
+/*@media (max-width: 1000px) {*/
+/*  .inputList {*/
+/*    grid-template-columns: repeat(1, 2fr);*/
+/*  }*/
+/*  .input{*/
+/*    width: 100%;*/
+/*  }*/
+/*  .button{*/
+/*    width: auto;*/
+/*    display: inline-block;*/
+/**/
+/*  }*/
+/*}*/

@@ -33,8 +33,8 @@ const DataList: FC<DataListProps> = ({ croppedSheet, setDetail, setSortParams })
         {croppedSheet.length > 0 ? (
           <table className={classes.table}>
             <thead>
-              <tr className={classes.tableColumn}>
-                <td className={classes.tableRow} onClick={() => setParams('id')}>
+              <tr className={classes.tableRow}>
+                <td className={classes.tableColumn} onClick={() => setParams('id')}>
                   Id
                   {orientation !== '' && type === 'id' && (
                     <img
@@ -43,7 +43,7 @@ const DataList: FC<DataListProps> = ({ croppedSheet, setDetail, setSortParams })
                     />
                   )}
                 </td>
-                <td className={classes.tableRow} onClick={() => setParams('firstName')}>
+                <td className={classes.tableColumn} onClick={() => setParams('firstName')}>
                   First Name
                   {orientation !== '' && type === 'firstName' && (
                     <img
@@ -52,7 +52,7 @@ const DataList: FC<DataListProps> = ({ croppedSheet, setDetail, setSortParams })
                     />
                   )}
                 </td>
-                <td className={classes.tableRow} onClick={() => setParams('lastName')}>
+                <td className={classes.tableColumn} onClick={() => setParams('lastName')}>
                   Last Name
                   {orientation !== '' && type === 'lastName' && (
                     <img
@@ -61,7 +61,7 @@ const DataList: FC<DataListProps> = ({ croppedSheet, setDetail, setSortParams })
                     />
                   )}
                 </td>
-                <td className={classes.tableRow} onClick={() => setParams('email')}>
+                <td className={classes.tableColumn} onClick={() => setParams('email')}>
                   Email
                   {orientation !== '' && type === 'email' && (
                     <img
@@ -70,7 +70,7 @@ const DataList: FC<DataListProps> = ({ croppedSheet, setDetail, setSortParams })
                     />
                   )}
                 </td>
-                <td className={classes.tableRow} onClick={() => setParams('phone')}>
+                <td className={classes.tableColumn} onClick={() => setParams('phone')}>
                   Phone
                   {orientation !== '' && type === 'phone' && (
                     <img

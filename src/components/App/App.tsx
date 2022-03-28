@@ -7,6 +7,7 @@ import DataList from '../DataList/DataList';
 import Pagination from '../Pagination/Pagination';
 import API from '../../API';
 import { dataItem, filterParamsTypes, sortParams } from '../../types';
+import Loader from "../Loader/Loader";
 
 function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -135,16 +136,19 @@ function App() {
   useEffect(() => {
     try {
       API.getFullSheet().then((response) => {
+        console.log(response.status);
         if (response.status === 200) {
           setFullSheet(response.data);
+          setLoad(true);
         } else {
-          setLoadingError('Error sending request to server.');
+          setFullSheet([]);
+          setLoad(true);
+          console.log('Error sending request to server.');
         }
       });
     } catch (e) {
-      console.log(e);
-      setLoadingError('Error sending request to server.');
-    } finally {
+      setFullSheet([]);
+      console.log('Error sending request to server.');
       setLoad(true);
     }
   }, []);
@@ -152,7 +156,7 @@ function App() {
   // Обрезание таблицы для вывода постранично
   useEffect(() => {
     setCroppedSheet(
-      filteredSheet.slice(currentPage * onePageLimit - onePageLimit, currentPage * onePageLimit),
+      filteredSheet?.slice(currentPage * onePageLimit - onePageLimit, currentPage * onePageLimit),
     );
     console.log(croppedSheet);
   }, [filteredSheet, currentPage]);
@@ -175,28 +179,24 @@ function App() {
       <section>
         <div className={`${classes.columns} ${globalClasses.container}`}>
           {load ? (
-            !loadingError ? (
-              <>
-                <DataList
-                  croppedSheet={croppedSheet}
-                  setDetail={setDetail}
-                  setSortParams={setSortParams}
-                />
-                <Detail detail={detail} />
-              </>
-            ) : (
-              <p>{loadingError}</p>
-            )
+            <>
+              <DataList
+                croppedSheet={croppedSheet}
+                setDetail={setDetail}
+                setSortParams={setSortParams}
+              />
+              <Detail detail={detail} />
+            </>
           ) : (
-            <p>Loading</p>
+            <Loader/>
           )}
         </div>
       </section>
-      <Pagination
-        currentPage={currentPage}
-        paginationPagesCount={paginationPagesCount}
-        setCurrentPage={setCurrentPage}
-      />
+      {/*<Pagination*/}
+      {/*  currentPage={currentPage}*/}
+      {/*  paginationPagesCount={paginationPagesCount}*/}
+      {/*  setCurrentPage={setCurrentPage}*/}
+      {/*/>*/}
     </>
   );
 }

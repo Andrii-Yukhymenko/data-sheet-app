@@ -1,3 +1,29 @@
-.columnDetail {
+.wrapper {
   width: 30%;
 }
+.body {
+  position: sticky;
+  top: 0;
+  right: 0;
+  padding: 20px 10px;
+}
+.title {
+  font-weight: bold;
+  margin: 0 12px 0 0;
+  font-size: 16px;
+}
+.text {
+}
+.listItem {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 7px 0;
+}
+/*@media (max-width: 1000px) {*/
+/*  .body {*/
+/*    padding: 0 10px 20px 10px;*/
+/*  }*/
+/*  .wrapper{*/
+/*    width: 100%;*/
+/*  }*/
+/*}*/

@@ -28,11 +28,11 @@ const Search: FC<searchProps> = ({ setFilterParams }) => {
       <div className={globalClasses.container}>
         <div className={classes.inputList}>
           <label>
-            <p>Id</p>
+            <p className={classes.title}>Id</p>
             <input className={classes.input} value={id} onChange={(e) => setId(e.target.value)} />
           </label>
           <label>
-            <p>First Name</p>
+            <p className={classes.title}>First Name</p>
             <input
               className={classes.input}
               value={firstName}
@@ -40,7 +40,7 @@ const Search: FC<searchProps> = ({ setFilterParams }) => {
             />
           </label>
           <label>
-            <p>Last Name</p>
+            <p className={classes.title}>Last Name</p>
             <input
               className={classes.input}
               value={lastName}
@@ -48,7 +48,7 @@ const Search: FC<searchProps> = ({ setFilterParams }) => {
             />
           </label>
           <label>
-            <p>Email</p>
+            <p className={classes.title}>Email</p>
             <input
               className={classes.input}
               value={email}
@@ -56,14 +56,14 @@ const Search: FC<searchProps> = ({ setFilterParams }) => {
             />
           </label>
           <label>
-            <p>Phone</p>
+            <p className={classes.title}>Phone</p>
             <input
               className={classes.input}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </label>
-          <button
+          <button className={classes.button}
             onClick={() => {
               setId('');
               setFirstName('');

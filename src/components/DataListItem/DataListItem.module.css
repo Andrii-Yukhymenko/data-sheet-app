@@ -6,5 +6,16 @@
 }
 .tableRow {
   padding: 7px;
-  border: 2px solid #000;
+  border: 1px solid #BFBFBF;
 }
+.button{
+  background: #07B0F2;
+  padding: 3px 6px;
+  margin: 0 0 0 5px;
+  border-radius: 3px;
+}
+/*@media (max-width: 1000px) {*/
+/*  .columnDataList{*/
+    /*width: 100%;*/
+  /*}*/
+/*}*/

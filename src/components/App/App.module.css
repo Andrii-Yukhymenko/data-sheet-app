@@ -1,6 +1,8 @@
-.columns{
+.columns {
   display: flex;
 }
-
-
-
+/*@media (max-width: 1000px) {*/
+/*  .columns {*/
+/*    flex-direction: column-reverse;*/
+/*  }*/
+/*}*/
