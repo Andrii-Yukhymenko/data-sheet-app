@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://www.filltext.com/';
+const BASE_URL = 'https://www.filltext.com/';
 export default class API {
   static getFullSheet = () => {
     const config = {
