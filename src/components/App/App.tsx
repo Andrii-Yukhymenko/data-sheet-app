@@ -175,7 +175,11 @@ function App() {
   // Render
   return (
     <>
-      <Search setFilterParams={setFilterParams} />
+      <section>
+        <div className={globalClasses.container}>
+          <Search setFilterParams={setFilterParams} />
+        </div>
+      </section>
       <section>
         <div className={`${classes.columns} ${globalClasses.container}`}>
           {load ? (
@@ -192,11 +196,15 @@ function App() {
           )}
         </div>
       </section>
-      <Pagination
-        currentPage={currentPage}
-        paginationPagesCount={paginationPagesCount}
-        setCurrentPage={setCurrentPage}
-      />
+      <section>
+        <div className={globalClasses.container}>
+          <Pagination
+            currentPage={currentPage}
+            paginationPagesCount={paginationPagesCount}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
+      </section>
     </>
   );
 }
