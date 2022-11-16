@@ -16,15 +16,15 @@ jobs:
 
           script: |
             cd /
-            rm -rf /var/www/data-sheet-app/
-            rm -rf /home/cloned-repo-data-sheet-app/
+            sudo rm -rf /var/www/data-sheet-app/
+            sudo rm -rf /home/cloned-repo-data-sheet-app/
             cd /var/www
-            mkdir data-sheet-app
+            sudo mkdir data-sheet-app
             cd /home
-            mkdir cloned-repo-data-sheet-app
+            sudo mkdir cloned-repo-data-sheet-app
             cd cloned-repo-data-sheet-app
-            git clone https://github.com/Andrii-Yukhymenko/data-sheet-app.git
+            sudo git clone https://github.com/Andrii-Yukhymenko/data-sheet-app.git
             cd data-sheet-app/
-            npm install
-            npm run build
-            cp -r build/* /var/www/data-sheet-app
+            sudo npm install
+            sudo npm run build
+            sudo cp -r build/* /var/www/data-sheet-app
